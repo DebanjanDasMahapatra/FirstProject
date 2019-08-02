@@ -1,0 +1,114 @@
+.banner {
+    float: left;
+    width: 66%;
+    background: linear-gradient(to top, grey, lightgrey);
+    min-height: 95%;
+    height: 95%;
+    padding: 2%;
+}
+
+.newuser {
+    float: left;
+    width: 30%;
+    background: lavender;
+    min-height: 100%;
+    height: 100%;
+}
+
+h1 {
+    text-align: center;
+}
+
+.formLabel {
+    color: green;
+}
+
+.formInput {
+    border-radius: 5px;
+    width: 80%;
+    margin: 2.5% 10%;
+    border: 1px solid grey;
+    padding: 5px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.formInput:focus {
+    outline: none;
+    border: 1px solid blue;
+}
+
+label {
+    margin: 2.5% 10%;
+}
+
+.submitBtn {
+    border-radius: 20px;
+    background: green;
+    color: white;
+    border: none;
+    cursor: pointer;
+    padding: 10px 20px;
+    margin-left: 10%;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.submitBtn:hover {
+    background: blue;
+}
+
+.formMsg {
+    margin: 10%;
+}
+
+.linkLabel {
+    cursor: pointer;
+}
+
+.linkLabel:hover {
+    color: blue
+}
+
+.rdBtn {
+    background: red;
+    padding: 5px;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    padding: 10px 20px;
+    margin: 2% 10%;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.adBtn {
+    background: green;
+    padding: 5px;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    margin: 2% 10%;
+    border: none;
+    cursor: pointer;
+    padding: 10px 20px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.showCDN {
+    font-family: 'Courier New', Courier, monospace;
+    color: orange;
+    font-weight: bold;
+    width: 80%;
+    margin: 2% 10%;
+    resize: none;
+    border: none;
+    background: transparent
+}
+
+.showCDN:focus {
+    outline: none;
+}
+
+.gotCDN {
+    color: blue;
+}
