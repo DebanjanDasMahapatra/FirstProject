@@ -55,6 +55,11 @@ label {
 .submitBtn:hover {
     background: blue;
 }
+.submitBtn[disabled] {
+    background: gray;
+    color: black;
+    cursor: auto
+}
 
 .formMsg {
     margin: 10%;

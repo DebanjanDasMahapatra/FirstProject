@@ -16,7 +16,7 @@
     <li></li>
   </ul>
 </div>
-<!-- new line added -->
+
 <div class="newuser" *ngIf="!show">
   <div *ngIf="!cdn">
     <h4 class="formMsg">Please fill in the following fields to get your CDN.</h4>
@@ -37,7 +37,7 @@
     <small style="margin: 2% 10%">Copy the CDN and paste as explained in the steps.</small>
   </div>
 </div>
-<div class="newuser" *ngIf="show">
+<div class="newuser" *ngIf="show && !retrieved">
   <h4 class="formMsg">Check your domain's visitor count:.</h4>
   <form #checkForm="ngForm" novalidate (submit)="getVisits($event.target)">
   <label class="formLabel" for="email">Enter your Email ID:</label>
@@ -47,4 +47,10 @@
   <button class="submitBtn" type="submit">Check Visitor Log</button>
   <label class="linkLabel" (click)="show = !show"><u>New here ?</u></label>
 </form>
+</div>
+<div class="newuser" *ngIf="show && retrieved">
+  <h4 class="formMsg">Account: {{retrievedUser.email}} | Registered domain: {{retrievedUser.baseDomain}}</h4>
+  <p *ngFor="let path of retrievedUser.paths; let i=index">{{i}}. {{path.path}}&nbsp;{{path.totalVisitorCount}}&nbsp;
+    <li *ngFor="let visitor of retrievedUser.visitors; let j=index">{{j}}. {{j.count}}</li>
+  </p>
 </div>

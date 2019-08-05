@@ -12,8 +12,10 @@ export class AppComponent {
   show: boolean = false;
   registered: boolean = false;
   fetching: boolean = false;
+  retrieved: boolean = false;
   cdn: string = '';
   user = new User;
+  receivedUser;
   email: string = '';
   secretKey: string = '';
 
@@ -25,19 +27,22 @@ export class AppComponent {
 
   register(e: any) {
     this.registered = true;
-    console.log(e);
-
-    // this._visitor.registerUser(this.user).subscribe(
-    //   data=>{
-    //     console.log('Data: '+JSON.stringify(data));
-    //     e.target.reset();
-    //     this.registered = false;
-    //   },
-    //   error=> {
-    //     console.log('Error: '+error);
-    //     this.registered = false;
-    //   }
-    // )
+    this._visitor.registerUser(this.user).subscribe(
+      data => {
+        console.log('Data: ' + JSON.stringify(data));
+        if(data.status) {
+          alert('Registered Successfully !!!');
+        } else {
+          alert('Registration Failure: '+data.message);
+        }
+        e.target.reset();
+        this.registered = false;
+      },
+      error => {
+        console.log('Registration Failure: ' + error.statusCode + ' ' + error.statusText);
+        this.registered = false;
+      }
+    )
   }
 
   getVisits(e: any) {
@@ -46,10 +51,32 @@ export class AppComponent {
       data => {
         console.log('Data: ' + JSON.stringify(data));
         e.reset();
+        if(data.status) {
+          this.receivedUser = data.data;
+          this.receivedUser = {
+            email: "abc@gmail.com",
+            baseDomain: "example.com",
+            paths: [
+              {
+                path: "/login",
+                totalVisitorCount: 100,
+                visitors: {}
+              },
+              {
+                path: "/read",
+                totalVisitorCount: 20,
+                visitors: {}
+              }
+            ]
+          }
+          this.retrieved = true;
+        } else {
+          alert('Data retrieval problem: '+data.message);
+        }
         this.fetching = false;
       },
       error => {
-        console.log('Error: ' + error);
+        console.log('Data retrieval problem: ' + error);
         this.fetching = false;
       }
     )
