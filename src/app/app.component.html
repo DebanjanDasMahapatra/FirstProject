@@ -1,6 +1,6 @@
 <div class="banner">
   <h1>Visitor Solution</h1>
-  <p>Count your domain visits in the simplest way using our CDN</p>
+  <!-- <p>Count your domain visits in the simplest way using our CDN</p>
   <h3>Steps to include CDN:</h3>
   <ul>
     <li>Enter your valid Email ID, your new Secret Key and <strong>your base domain (e.g. if your domain is
@@ -14,7 +14,28 @@
     <li>Click "Already have a CDN ?" below the Get My CDN button. </li>
     <li>Enter your email ID, your secretkey and click Check Visitor Log button.</li>
     <li></li>
-  </ul>
+  </ul> -->
+  <div style="height: 500px">
+      <x-map #xmap [Options]="_options">
+          <x-map-marker
+              [Latitude]="22.572645" 
+              [Longitude]="88.363892" 
+              [Title]="'My Marker'" 
+              [IconUrl]="'https://eb54b6c3.ngrok.io/cdns/pin.png'" 
+              [IconInfo]="{
+                  markerType: _markerTypeId.FontMarker,
+                  fontName: 'FontAwesome',
+                  fontSize: 20,
+                  color: 'green',
+                  markerOffsetRatio: { x: 0.5, y: 1 },
+                  text: '\uF276'
+              }"> 
+              <!-- <info-box [DisableAutoPan]="true" [Title]="'My InfoBox'" [Description]="'Hi, this is the content of the <strong>info window</strong>. It is your responsibility to implement functionality such as close, etc...'">
+                  <info-box-action [Label]="'Click Me'" (ActionClicked)="_click()"></info-box-action>
+              </info-box>    -->
+          </x-map-marker>
+      </x-map>
+  </div>
 </div>
 
 <div class="newuser" *ngIf="!show">
@@ -40,17 +61,17 @@
 <div class="newuser" *ngIf="show && !retrieved">
   <h4 class="formMsg">Check your domain's visitor count:.</h4>
   <form #checkForm="ngForm" novalidate (submit)="getVisits($event.target)">
-  <label class="formLabel" for="email">Enter your Email ID:</label>
-  <input class="formInput" type="email" id="userEmail">
-  <label class="formLabel" for="secretkey">Enter Secret Key:</label>
-  <input class="formInput" type="secretkey" id="secretkey">
+  <label class="formLabel" for="userEmail2">Enter your Email ID:</label>
+  <input class="formInput" type="email" id="userEmail2" [(ngModel)]="fetchEmail" name="email">
+  <label class="formLabel" for="secretkey2">Enter Base Domain:</label>
+  <input class="formInput" type="text" id="secretkey2" [(ngModel)]="fetchBaseDomain" name="domain">
   <button class="submitBtn" type="submit">Check Visitor Log</button>
   <label class="linkLabel" (click)="show = !show"><u>New here ?</u></label>
 </form>
 </div>
 <div class="newuser" *ngIf="show && retrieved">
-  <h4 class="formMsg">Account: {{retrievedUser.email}} | Registered domain: {{retrievedUser.baseDomain}}</h4>
-  <p *ngFor="let path of retrievedUser.paths; let i=index">{{i}}. {{path.path}}&nbsp;{{path.totalVisitorCount}}&nbsp;
-    <li *ngFor="let visitor of retrievedUser.visitors; let j=index">{{j}}. {{j.count}}</li>
+  <h4 class="formMsg">Account: {{receivedUser.email}} | Registered domain: {{receivedUser.baseDomain}}</h4>
+  <p *ngFor="let path of receivedUser.paths; let i=index">{{i}}. {{path.path}}&nbsp;{{path.totalVisitorCount}}&nbsp;
+    <li *ngFor="let visitor of visitors[i]; let j=index">{{j}}. {{visitor}}</li>
   </p>
 </div>

@@ -1,0 +1,8 @@
+#visit-count {
+    position: fixed;
+    top: 96%;
+    left: 96%;
+    background: blue;
+    color: white;
+    border-radius: 5px;
+}
