@@ -9,10 +9,11 @@
 
 .newuser {
     float: left;
-    width: 30%;
+    width: 26%;
     background: lavender;
     min-height: 100%;
     height: 100%;
+    padding: 2%;
 }
 
 h1 {
@@ -116,4 +117,14 @@ label {
 
 .gotCDN {
     color: blue;
+}
+
+.pathSelect {
+    border-radius: 10px;
+    background: lightblue;
+    color: green;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }

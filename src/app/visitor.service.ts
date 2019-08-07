@@ -13,7 +13,7 @@ export class VisitorService {
     registerUser(val: User) {
       return this._http.post<any>(this._baseUrl+'/users/register',val);
     }
-    fetchUserData(val) {
+    fetchUserData(val: {}) {
       return this._http.post<any>(this._baseUrl+'/users/getUserData',val);
     }
 }
