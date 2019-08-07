@@ -74,7 +74,7 @@
   </p>
   <p>Select Path to show Map:</p>
   <select class="pathSelect" [(ngModel)]="selectedPath"> {{ selectedPath }}
-    <option [value]="-1">-- Select Your Path --</option>
-    <option *ngFor="let path of response.data.paths; let i = index" [value]="i">{{path.path}}</option>
+    <option class="pathSelect" [value]="-1">-- Select Your Path --</option>
+    <option class="pathSelect" *ngFor="let path of response.data.paths; let i = index" [value]="i">{{path.path}}</option>
   </select>
 </div>
