@@ -1,0 +1,39 @@
+<div class="banner">
+    <h1>Follow these Simple Steps to get your CDN</h1>
+      <p>Count your domain visits in the simplest way using our CDN</p>
+      <h3>Steps to include CDN:</h3>
+      <ul>
+        <li>Enter your valid Email ID, your new Secret Key and <strong>your base domain (e.g. if your domain is
+            http://www.example.com/users, enter only http://www.example.com)</strong></li>
+        <li>Click Get My CDN. Note down your CDN.</li>
+        <li>Paste your CDN just before the closing body tag in your html.</li>
+      </ul>
+      <h3>Steps to check visitor count:</h3>
+      <ul>
+        <li>Click "Already have CDN ?" below the Get My CDN button. </li>
+        <li>Enter your email ID and your base domain and click Check Visitor Log button.</li>
+        <li></li>
+      </ul>
+  </div>
+  
+  <div class="newuser">
+    <div *ngIf="!cdn">
+      <h4 class="formMsg">Please fill in the following fields to get your CDN.</h4>
+      <form #userform="ngForm" novalidate (submit)="register($event)">
+        <label class="formLabel" for="userEmail">Enter your Email ID:</label>
+        <input class="formInput" type="email" id="userEmail" [(ngModel)]="user.email" name="email">
+        <label class="formLabel" for="secretkey">Enter New Secret Key:</label>
+        <input class="formInput" type="password" id="secretkey" [(ngModel)]="user.secretKey" name="secretKey">
+        <label class="formLabel" for="domain">Enter Your Domain:</label>
+        <input class="formInput" type="text" id="domain" [(ngModel)]="user.baseDomain" name="domain">
+        <button class="submitBtn" type="submit"
+          [disabled]="registered">{{ registered ? 'Registering.. Wait a while..' : 'Register My Domain' }}</button>
+        <label class="linkLabel" routerLink="/checkvisit"><u>Already have CDN ?</u></label>
+      </form>
+    </div>
+    <div *ngIf="cdn" style="margin-top: 10%">
+      <label class="gotCDN">Here is your CDN:</label>
+      <textarea class="showCDN" rows="3" readonly>{{cdn}}</textarea>
+      <small style="margin: 2% 10%">Copy the CDN and paste as explained in the steps.</small>
+    </div>
+  </div>

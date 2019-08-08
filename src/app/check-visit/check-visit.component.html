@@ -1,0 +1,52 @@
+<div class="banner">
+  <h1>Crowd View Map</h1>
+  <div *ngIf="selectedPath == -1">
+    Select a Path from the Dropdown to view the map
+  </div>
+  <div style="height: 600px" *ngIf="selectedPath != -1">
+    <x-map #xmap [Options]="_options">
+      <x-map-marker *ngFor="let point of receivedUser.paths[selectedPath].visitors" [Latitude]="point.geoInfo.ll[0]"
+        [Longitude]="point.geoInfo.ll[1]" [Title]="point.ip" [IconUrl]="'https://d540cd20.ngrok.io/cdns/pin.png'"
+        [IconInfo]="{
+                  markerType: _markerTypeId.FontMarker,
+                  fontName: 'FontAwesome',
+                  fontSize: 30,
+                  color: 'red',
+                  markerOffsetRatio: { x: 1, y: 1 },
+                  text: '\u2605'
+              }">
+      </x-map-marker>
+    </x-map>
+  </div>
+</div>
+<div class="newuser">
+  <h4 class="formMsg">Check your domain's visitor count:</h4>
+  <form #checkForm="ngForm" novalidate (submit)="getVisits($event.target)">
+    <label class="formLabel" for="userEmail2">Enter your Email ID:</label>
+    <input class="formInput" type="email" id="userEmail2" [(ngModel)]="fetchEmail" name="email" required>
+    <label class="formLabel" for="secretkey2">Enter Base Domain:</label>
+    <input class="formInput" type="text" id="secretkey2" [(ngModel)]="fetchBaseDomain" name="domain" required>
+    <button class="submitBtn" *ngIf="!(retrieved && !fetching)"
+      type="submit">{{ fetching ? 'Fetching Data.. Wait a while :)' : 'Check Visitor Log' }}</button>
+    <label class="linkLabel" routerLink="/getcdn"><u>New here ?</u></label>
+    <button class="submitBtn" type="button" (click)="temp()" *ngIf="!(retrieved && !fetching) && debuging">Temporary Button</button>
+  </form>
+  <div *ngIf="retrieved && !fetching">
+    <button class="submitBtn" type="button" (click)="resetData()">Reset</button>
+    <h4 class="formMsg">Account Information:<br><br>Registered Email: {{receivedUser.email}}<br>Registered domain:
+      {{receivedUser.baseDomain}}</h4>
+      <p>Select Path to show Map:</p>
+      <select class="pathSelect" [(ngModel)]="selectedPath"> {{ selectedPath }}
+        <option class="pathSelect" [value]="-1">-- Select Your Path --</option>
+        <option class="pathSelect" *ngFor="let path of receivedUser.paths; let i = index" [value]="i">{{path.path}}
+        </option>
+      </select><br><br>
+    <div class="pathDisplay" *ngFor="let path of receivedUser.paths; let i=index">
+      <h5><strong>Path: </strong>{{path.path}}<br><strong>No. of Visits: </strong>{{path.totalVisitorCount}}<br>
+        <strong (click)="toggleDisplayPath(i)" class="linkLabel">[{{showPaths[i] ? 'Hide' : 'Show'}} complete visitor IP list]</strong></h5>
+      <div class="linkLabel" *ngFor="let visitor of visitors[i]; let j=index" [hidden]="!showPaths[i]" (click)="displayInfo(i,j)">
+        {{visitor.ip}}</div>
+      <h5><strong (click)="toggleDisplayPath(i)" class="linkLabel" [hidden]="!showPaths[i]">[{{showPaths[i] ? 'Hide' : 'Show'}} complete visitor IP list]</strong></h5>
+    </div>
+  </div>
+</div>

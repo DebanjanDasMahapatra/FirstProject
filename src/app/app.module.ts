@@ -9,10 +9,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { VisitorService } from './visitor.service';
 import { MapModule, MapAPILoader, BingMapAPILoaderConfig, BingMapAPILoader, WindowRef, DocumentRef } from 'angular-maps';
+import { GetCdnComponent } from './get-cdn/get-cdn.component';
+import { CheckVisitComponent } from './check-visit/check-visit.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    GetCdnComponent,
+    CheckVisitComponent
   ],
   imports: [
     BrowserModule,

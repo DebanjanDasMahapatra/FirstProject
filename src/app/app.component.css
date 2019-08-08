@@ -1,19 +1,19 @@
 .banner {
     float: left;
-    width: 66%;
+    width: 70%;
     background: linear-gradient(to top, grey, lightgrey);
-    min-height: 95%;
-    height: 95%;
-    padding: 2%;
+    min-height: 100%;
+    height: 100%;
 }
 
 .newuser {
     float: left;
-    width: 26%;
+    width: 28%;
     background: lavender;
     min-height: 95%;
     height: 95%;
-    padding: 2%;
+    padding: 1%;
+    overflow-y: auto;
 }
 
 h1 {
@@ -26,8 +26,8 @@ h1 {
 
 .formInput {
     border-radius: 5px;
-    width: 80%;
-    margin: 2.5% 10%;
+    width: 90%;
+    margin: 2.5% 5%;
     border: 1px solid grey;
     padding: 5px;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
@@ -39,7 +39,7 @@ h1 {
 }
 
 label {
-    margin: 2.5% 10%;
+    margin: 2.5% 5%;
 }
 
 .submitBtn {
@@ -59,11 +59,11 @@ label {
 .submitBtn[disabled] {
     background: gray;
     color: black;
-    cursor: auto
+    cursor: no-drop;
 }
 
 .formMsg {
-    margin: 10%;
+    margin: 5%;
 }
 
 .linkLabel {
@@ -126,4 +126,8 @@ label {
     cursor: pointer;
     padding: 10px;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.ipListing {
+    list-style-type: none;
 }

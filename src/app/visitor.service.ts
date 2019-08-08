@@ -9,7 +9,7 @@ export class VisitorService {
 
   constructor(private _http: HttpClient) { }
 
-    _baseUrl = 'https://680f3e02.ngrok.io'
+    _baseUrl = 'https://d540cd20.ngrok.io'
     registerUser(val: User) {
       return this._http.post<any>(this._baseUrl+'/users/register',val);
     }
