@@ -11,12 +11,14 @@ import { VisitorService } from './visitor.service';
 import { MapModule, MapAPILoader, BingMapAPILoaderConfig, BingMapAPILoader, WindowRef, DocumentRef } from 'angular-maps';
 import { GetCdnComponent } from './get-cdn/get-cdn.component';
 import { CheckVisitComponent } from './check-visit/check-visit.component';
+import { CrowdMapComponent } from './crowd-map/crowd-map.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     GetCdnComponent,
-    CheckVisitComponent
+    CheckVisitComponent,
+    CrowdMapComponent
   ],
   imports: [
     BrowserModule,

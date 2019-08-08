@@ -1,0 +1,22 @@
+<button class="submitBtn" (click)="resetInfo()">RESET</button>
+Select your path: 
+<select class="pathSelect" [(ngModel)]="selectedPath"> {{ selectedPath }}
+    <option class="pathSelect" [value]="-1">-- Select Your Path --</option>
+    <option class="pathSelect" *ngFor="let path of receivedUser.paths; let i = index" [value]="i">{{path.path}}
+    </option>
+  </select>
+<x-map #xmap [Options]="_options" style="height: 96%">
+  <ng-container *ngIf="selectedPath != -1">
+    <x-map-marker *ngFor="let point of receivedUser.paths[selectedPath].visitors" [Latitude]="point.geoInfo.ll[0]"
+      [Longitude]="point.geoInfo.ll[1]" [Title]="point.ip" [IconUrl]="'https://d540cd20.ngrok.io/cdns/pin.png'"
+      [IconInfo]="{
+                markerType: _markerTypeId.FontMarker,
+                fontName: 'FontAwesome',
+                fontSize: 30,
+                color: 'red',
+                markerOffsetRatio: { x: 1, y: 1 },
+                text: '\u2605'
+            }">
+    </x-map-marker>
+  </ng-container>
+  </x-map>

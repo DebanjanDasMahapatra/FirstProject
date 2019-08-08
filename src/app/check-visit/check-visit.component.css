@@ -2,4 +2,26 @@
     border: 2px solid purple;
     border-radius: 10px;
     padding: 10px;
+    margin: 0px 10px 10px 10px;
+}
+
+.ipListTable {
+    width: 100%;
+}
+
+.headCells {
+    padding: 10px;
+    border-radius: 3px;
+    background: green;
+    color: white
+}
+
+.bodyCells {
+    border: 1px solid blue;
+    padding: 5px;
+    border-radius: 3px;
+}
+.bodyCells:hover {
+    background: blue;
+    color: white;
 }

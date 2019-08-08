@@ -4,6 +4,7 @@
     background: linear-gradient(to top, grey, lightgrey);
     min-height: 100%;
     height: 100%;
+    overflow-y: auto;
 }
 
 .newuser {
@@ -13,7 +14,6 @@
     min-height: 95%;
     height: 95%;
     padding: 1%;
-    overflow-y: auto;
 }
 
 h1 {
