@@ -37,7 +37,7 @@ export class CrowdMapComponent implements OnInit {
     }
     else {
       alert('Credentials not found :/ Please enter your credentials to view the crowd map.');
-      //this.router.navigate(['/checkvisit']);
+      this.router.navigate(['/checkvisit']);
     }
     this.temp();
   }
