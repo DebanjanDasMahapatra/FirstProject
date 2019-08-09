@@ -5,45 +5,54 @@
     <input class="formInput" type="email" id="userEmail2" [(ngModel)]="fetchEmail" name="email" required>
     <label class="formLabel" for="secretkey2">Enter Base Domain:</label>
     <input class="formInput" type="text" id="secretkey2" [(ngModel)]="fetchBaseDomain" name="domain" required>
-    <button class="submitBtn" *ngIf="!(retrieved && !fetching)" [disabled]="fetching"
+    <button class="submitBtn" *ngIf="!(retrieved && !fetching)" [disabled]="fetching || checkForm.form.invalid"
       type="submit">{{ fetching ? 'Fetching Data.. Wait a while :)' : 'Check Visitor Log' }}</button>
     <label class="linkLabel" routerLink="/getcdn"><u>New here ?</u></label>
-    <button class="submitBtn" type="button" (click)="temp()" *ngIf="!(retrieved && !fetching) && debuging">Temporary Button</button>
+    <button class="submitBtn" type="button" (click)="temp()" *ngIf="!(retrieved && !fetching) && debuging">Temporary
+      Button</button>
     <button class="submitBtn" type="button" (click)="resetData()" *ngIf="retrieved">Reset</button>
     <button class="submitBtn" type="button" routerLink="/crowdmap" *ngIf="retrieved">View Crowd Map</button>
   </form>
+
+  <div *ngIf="retrieved && !fetching">
+    <h4 class="formMsg">Account Information:<br><br>
+      Email: <span class="spanInfo"> {{receivedUser.email}} </span><br>
+      Registered domain: <span class="spanInfo"> {{receivedUser.baseDomain}} </span></h4>
+  </div>
 </div>
 <div class="banner">
-    <h1>Check your Domain's Visits</h1>
-    <div *ngIf="retrieved && !fetching">
-      <h4 class="formMsg">Account Information:<br><br>Registered Email: {{receivedUser.email}}<br>Registered domain:
-        {{receivedUser.baseDomain}}</h4>
-      <div class="pathDisplay" *ngFor="let path of receivedUser.paths; let i=index">
-        <h5><strong>Path: </strong>{{path.path}}<br><strong>No. of Visits: </strong>{{path.totalVisitorCount}}<br>
-          <strong (click)="toggleDisplayPath(i)" class="linkLabel">[{{showPaths[i] ? 'Hide' : 'Show'}} complete visitor IP list]</strong></h5>
-          <table class="ipListTable" [hidden]="!showPaths[i]">
-            <thead>
-              <tr>
-                <th class="headCells">#</th>
-                <th class="headCells">IP address</th>
-                <th class="headCells">Visits</th>
-                <th class="headCells">Country</th>
-                <th class="headCells">Region</th>
-                <th class="headCells">City</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let visitor of visitors[i]; let j=index" class="bodyCells">
-                <td class="bodyCells"> {{j+1}} </td> 
-                <td class="bodyCells"> {{visitor.ip}} </td>
-                <td class="bodyCells"> {{visitor.count}} </td>
-                <td class="bodyCells"> {{visitor.geoInfo.country}} </td>
-                <td class="bodyCells"> {{visitor.geoInfo.region}} </td>
-                <td class="bodyCells"> {{visitor.geoInfo.city}} </td>
-              </tr>
-            </tbody>
-          </table>
-        <h5><strong (click)="toggleDisplayPath(i)" class="linkLabel" [hidden]="!showPaths[i]">[{{showPaths[i] ? 'Hide' : 'Show'}} complete visitor IP list]</strong></h5>
-      </div>
+  <h1>Check your Domain's Visits</h1>
+  <div *ngIf="retrieved && !fetching">
+    <div class="pathDisplay" *ngFor="let path of receivedUser.paths; let i=index">
+      <h5><strong>Path: </strong><span class="spanInfo">{{path.path}}</span><br>
+        <strong>No. of Visits: </strong><span class="spanInfo">{{path.totalVisitorCount}}</span><br>
+        <strong (click)="toggleDisplayPath(i)" class="linkLabel">
+          [{{showPaths[i] ? 'Hide' : 'Show'}} complete visitor IP list]
+        </strong></h5>
+      <table class="ipListTable" [hidden]="!showPaths[i]">
+        <thead>
+          <tr>
+            <th class="headCells">#</th>
+            <th class="headCells">IP address</th>
+            <th class="headCells">Visits</th>
+            <th class="headCells">Country</th>
+            <th class="headCells">Region</th>
+            <th class="headCells">City</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let visitor of visitors[i]; let j=index" class="bodyCells">
+            <td class="bodyCells"> {{j+1}} </td>
+            <td class="bodyCells"> {{visitor.ip}} </td>
+            <td class="bodyCells"> {{visitor.count}} </td>
+            <td class="bodyCells"> {{visitor.geoInfo.country}} </td>
+            <td class="bodyCells"> {{visitor.geoInfo.region}} </td>
+            <td class="bodyCells"> {{visitor.geoInfo.city}} </td>
+          </tr>
+        </tbody>
+      </table>
+      <h5><strong (click)="toggleDisplayPath(i)" class="linkLabel"
+          [hidden]="!showPaths[i]">[{{showPaths[i] ? 'Hide' : 'Show'}} complete visitor IP list]</strong></h5>
     </div>
   </div>
+</div>

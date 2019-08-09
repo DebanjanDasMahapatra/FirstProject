@@ -24,10 +24,13 @@ export class CheckVisitComponent implements OnInit {
   ngOnInit() {
     if(localStorage.getItem('credentials')) {
       let details = JSON.parse(localStorage.getItem('credentials'));
-      this.fetchEmail = details.email;
-      this.fetchBaseDomain = details.baseDomain;
-      //this.getVisits();
-      this.temp(true);
+      if(this.debuging)
+        this.temp();
+      else {
+        this.fetchEmail = details.email;
+        this.fetchBaseDomain = details.baseDomain;
+        this.getVisits(null);
+      }
     }
   }
 
@@ -46,6 +49,7 @@ export class CheckVisitComponent implements OnInit {
     this._visitor.fetchUserData({ email: this.fetchEmail, baseDomain: this.fetchBaseDomain }).subscribe(
       data => {
         console.log(JSON.stringify(data));
+        if(!this.debuging)
         e.reset();
         if (data.status) {
           localStorage.setItem('credentials',JSON.stringify(data.data));

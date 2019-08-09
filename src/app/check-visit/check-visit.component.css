@@ -25,3 +25,8 @@
     background: blue;
     color: white;
 }
+
+.spanInfo {
+    color: green;
+    font-weight: bold;
+}

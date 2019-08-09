@@ -1,11 +1,23 @@
-<button class="submitBtn" (click)="resetInfo()">RESET</button>
-Select your path: 
-<select class="pathSelect" [(ngModel)]="selectedPath"> {{ selectedPath }}
-    <option class="pathSelect" [value]="-1">-- Select Your Path --</option>
-    <option class="pathSelect" *ngFor="let path of receivedUser.paths; let i = index" [value]="i">{{path.path}}
-    </option>
-  </select>
-<x-map #xmap [Options]="_options" style="height: 96%">
+<div style="text-align: center; height: 6%">
+<div style="float: left; width: 10%">
+    <button class="submitBtn" style="margin: 0px" (click)="resetInfo()">RESET</button>
+  </div>
+  <div style="float: left; width: 30%">
+    <h4 class="formMsg" style="margin: 0px">Registered Email: <span class="spanInfo"> {{fetchEmail}} </span></h4>
+  </div>
+  <div style="float: left; width: 30%">
+      <h4 class="formMsg" style="margin: 0px">Registered domain: <span class="spanInfo"> {{fetchBaseDomain}} </span></h4>
+    </div>
+    <div style="float: left; width: 30%">
+    Select your path: 
+    <select class="pathSelect" [(ngModel)]="selectedPath"> {{ selectedPath }}
+        <option class="pathSelect" [value]="-1">-- Select Your Path --</option>
+        <option class="pathSelect" *ngFor="let path of receivedUser.paths; let i = index" [value]="i">{{path.path}}
+        </option>
+      </select>
+</div>
+</div>
+<x-map #xmap [Options]="_options" style="height: 94%;">
   <ng-container *ngIf="selectedPath != -1">
     <x-map-marker *ngFor="let point of receivedUser.paths[selectedPath].visitors" [Latitude]="point.geoInfo.ll[0]"
       [Longitude]="point.geoInfo.ll[1]" [Title]="point.ip" [IconUrl]="'https://d540cd20.ngrok.io/cdns/pin.png'"
